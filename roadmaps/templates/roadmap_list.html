@@ -1,0 +1,10 @@
+<h1>Recommended Roadmaps</h1>
+<ul>
+  {% for roadmap in roadmaps %}
+    <li>
+      <h2>{{ roadmap.title }}</h2>
+      <p>{{ roadmap.description }}</p>
+      <a href="{{ roadmap.tutorial_link }}">View Tutorial</a>
+    </li>
+  {% endfor %}
+</ul>
