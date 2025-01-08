@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>AI Onboarding</title>
+</head>
+
+<body>
+    <h1>Welcome to the AI Onboarding Process</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Complete Onboarding</button>
+    </form>
+
+    <h2>Onboarding Steps</h2>
+    <ul>
+        {% for step in steps %}
+        <li>{{ step.step_name }}: {{ step.description }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
