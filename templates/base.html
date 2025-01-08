@@ -1,0 +1,15 @@
+{% extends 'common_layout.html' %}
+
+{% block title %}
+    {% if page_title %}{{ page_title }} - My Application{% else %}My Application{% endif %}
+{% endblock %}
+
+{% block content %}
+    <!-- Page-specific content goes here -->
+    <div class="container">
+        <h1>{{ page_title }}</h1>
+        {% block page_content %}
+        <!-- Insert specific content for the page here -->
+        {% endblock %}
+    </div>
+{% endblock %}

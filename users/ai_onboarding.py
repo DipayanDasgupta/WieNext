@@ -3,6 +3,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from transformers import pipeline
 import pandas as pd
+from .youtube_recommendation import get_youtube_recommendations
 
 # Load spaCy English NLP model
 nlp = spacy.load("en_core_web_sm")
@@ -72,3 +73,25 @@ if __name__ == "__main__":
     print(f"Proficiency Level: {results['level']}")
     print("Recommended Courses:", ", ".join(results["recommendations"]))
     print(results["message"])
+
+  
+def onboarding(user_goals, user_level_response):
+    # Existing code for extracting topics and predicting proficiency
+    topics = extract_topics(user_goals)
+    user_level = predict_proficiency(user_level_response)
+
+    # Match topics with courses and get YouTube recommendations
+    recommendations = []
+    youtube_videos = []
+    for topic in topics:
+        if topic in courses:
+            recommendations.extend(courses[topic])
+            youtube_videos.extend(get_youtube_recommendations(f"{topic} {user_level}", max_results=3))
+
+    return {
+        "level": user_level,
+        "recommendations": recommendations if recommendations else "Explore general skills to start your journey.",
+        "youtube_videos": youtube_videos if youtube_videos else "No videos found for your selected topics.",
+        "message": level_recommendations[user_level]
+    }
+

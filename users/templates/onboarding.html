@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'common_layout.html' %}
 
-<head>
-    <title>AI Onboarding</title>
-</head>
-
-<body>
-    <h1>Welcome to the AI Onboarding Process</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Complete Onboarding</button>
-    </form>
-
-    <h2>Onboarding Steps</h2>
+{% block content %}
+    <h2>Recommended Learning Plan</h2>
+    <p>Proficiency Level: {{ results.level }}</p>
+    <p>{{ results.message }}</p>
+    <h3>Recommended Courses:</h3>
     <ul>
-        {% for step in steps %}
-        <li>{{ step.step_name }}: {{ step.description }}</li>
+        {% for course in results.recommendations %}
+        <li>{{ course }}</li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+    <h3>Recommended YouTube Videos:</h3>
+    <ul>
+        {% for video in results.youtube_videos %}
+        <li>
+            <a href="{{ video.url }}" target="_blank">{{ video.title }}</a>
+            <p>{{ video.description }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
