@@ -27,5 +27,4 @@ def get_youtube_recommendations(query, max_results=5):
     else:
         return []
 
-# Example Usage
-# print(get_youtube_recommendations('Python programming for beginners'))
+

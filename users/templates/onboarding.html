@@ -20,3 +20,13 @@
         {% endfor %}
     </ul>
 {% endblock %}
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="user_input" placeholder="Describe your learning needs">
+    <button type="submit">Get Recommendations</button>
+</form>
+
+{% if recommendation %}
+    <h2>AI Recommendations:</h2>
+    <p>{{ recommendation }}</p>
+{% endif %}
